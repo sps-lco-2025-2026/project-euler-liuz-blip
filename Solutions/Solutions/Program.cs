@@ -1,6 +1,9 @@
 ﻿
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
+using System.Globalization;
+using System.Linq.Expressions;
 using System.Reflection;
 using Microsoft.VisualBasic;
 
@@ -82,6 +85,119 @@ class Program
 
 
 
+        // Problem 4
+
+        void Problem4()
+        {
+            bool isPalindrome(int n)
+            {
+                string nStr = n.ToString();
+                for (int i = 0; i < nStr.Length / 2; i++)
+                {
+                    if (nStr[i] != nStr[nStr.Length - 1 - i]) return false;
+                }
+                return true;
+            }
+
+            int maxPalindrome = 0;
+            for (int i = 100; i < 1000; i++)
+            {
+                for (int j = 100; j < 1000; j++)
+                {
+                    int product = i * j;
+                    if (isPalindrome(product) && product > maxPalindrome)
+                    {
+                        maxPalindrome = product;
+                    }
+                }
+            }
+            Console.WriteLine(maxPalindrome);
+        }
+        // Problem4();
+
+
+
+        // Problem 5
+
+        void Problem5()
+        {
+            bool even_div(int num)
+            {
+                for (int i = 1; i <= 20; i++)
+                {
+                    if (num % i != 0) return false;
+                }
+                return true;
+            }
+
+            int current = 2025;
+            while (true)
+            {
+                if (even_div(current)) { break; }
+                current++;
+            }
+            Console.WriteLine(current);
+        }
+        // Problem5();
+
+
+
+        // Problem 6
+
+        void Problem6()
+        {
+            int sum_of_squares()
+            {
+                int sum = 0;
+                for (int i = 1; i <= 100; i++)
+                {
+                    sum += i * i;
+                }
+                return sum;
+            }
+
+            int square_of_sums()
+            {
+                int sum = 0;
+                for (int i = 1; i <= 100; i++)
+                {
+                    sum += i;
+                }
+                return sum * sum;
+            }
+
+            Console.WriteLine(square_of_sums() - sum_of_squares());
+        }
+        // Problem6();
+
+
+
+        // Problem 7
+
+        void Problem7()
+        {
+            bool is_prime(int n)
+            {
+                for (int i = 2; i < n/2 + 1; i++)
+                {
+                    if (n % i == 0) return false;
+                }
+                return true;
+            }
+
+            int counter = 0;
+            int current = 1;
+            while (counter <= 10001)
+            {
+                current++;
+                if (is_prime(current)) { counter++; }
+            }
+            Console.WriteLine(current);
+        }
+        Problem7();
+
+
+
         // Problem 11
 
         void Problem11()
@@ -148,7 +264,7 @@ class Program
             }
             Console.WriteLine(max_product);
         }
-        Problem11();
+        // Problem11();
 
     }
 }
